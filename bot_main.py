@@ -7,6 +7,7 @@ from fishing import fishing
 from fishing import init
 from codeforcce_api import get_user_data
 from codeforcce_api import get_user_rank
+from database import registered
 
 token = ""
 intents = discord.Intents.all()
@@ -22,6 +23,12 @@ async def on_ready():
 async def first_slash(ctx):
     await ctx.respond("我在測試")
 
+@bot.slash_command(name="register",description="將你的 Discord 帳號註冊在這一隻機器人上")
+async def register(ctx):
+    status = registered(ctx.author.id)
+    print(ctx.author.id)
+    if( status == -1 ): await ctx.respond("你已經註冊過了！")
+    else: await ctx.respond("註冊成功！")
 
 @bot.slash_command(name="fishing",description='釣一隻魚')
 async def fish(ctx):
