@@ -1,7 +1,7 @@
 # hhsh_crawler_bot
 One Discord Bot which can crawler and get user data in codeforces.
 
-## Version 1.0.0
+## Version 1.0.2
 
 ## Slash Command
 
@@ -20,6 +20,10 @@ Get the rating and rank of user's Codeforces data.
 ### announcement
 
 Get the top 5 announcenemt in National Hsin Hua Senior High School website.
+
+### money
+
+Query the user money.
 
 ### TBD
 
