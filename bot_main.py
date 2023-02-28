@@ -8,12 +8,12 @@ from fishing import init
 from codeforcce_api import get_user_data
 from codeforcce_api import get_user_rank
 from database import registered
+from database import query_money
+from database import adding_money
 
 token = ""
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix="",intents=intents)
-
-init() # 初始化釣魚
 
 @bot.event
 async def on_ready():
@@ -32,8 +32,11 @@ async def register(ctx):
 
 @bot.slash_command(name="fishing",description='釣一隻魚')
 async def fish(ctx):
+    status = registered(ctx.author.id)
     ans = fishing()
-    await ctx.respond('你釣起了一隻 'f'{round(random.uniform(0,100000))}'' cm 的'f'{ans}')
+    cm = round(random.uniform(0,1000))
+    await ctx.respond('你釣起了一隻 'f'{cm}'' cm 的'f'{ans}'' 獲得了 ' f'{cm/10}' ' 元')
+    adding_money(status)
 
 @bot.slash_command(name="announcement",description='取得新化高中官網的前 5 則公告')
 async def announcement(ctx):
@@ -41,6 +44,15 @@ async def announcement(ctx):
     list_data = get_announcement()
     await ctx.respond(list_data)
 
+@bot.slash_command(name="money",description='查詢當前擁有的金額')
+async def announcement(ctx):
+    status = registered(ctx.author.id)
+    check = query_money(status)
+
+    if( check == -1 ): # 還沒註冊的 User
+        await ctx.respond('你還沒有註冊帳號，請使用 /register 註冊你的 Discord 帳號資訊到資料庫中！')
+    else:
+        await ctx.respond('你目前擁有的金額為 ' f'{check}' ' 元！')
 @bot.slash_command(name='rating',description='查詢某個 user 的 codeforces rating')
 async def rating(ctx,handle: str):
 
