@@ -21,6 +21,10 @@ Get the rating and rank of user's Codeforces data.
 
 Get the top 5 announcenemt in National Hsin Hua Senior High School website.
 
+### money
+
+Query the user money.
+
 ### TBD
 
 - announcement text
