@@ -1,7 +1,7 @@
 # hhsh_crawler_bot
 One Discord Bot which can crawler and get user data in codeforces.
 
-## Version 1.0.0
+## Version 1.0.2
 
 ## Slash Command
 
